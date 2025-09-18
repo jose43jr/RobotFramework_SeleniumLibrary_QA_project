@@ -1,6 +1,6 @@
 *** Variables ***
 ${URL}       https://demoqa.com/text-box
-${BROWSER}   chrome
+${BROWSER}   headlesschrome
 ${NOME}      Jose Feitosa
 ${EMAIL}     jose@example.com
 ${END1}      Rua A, 123
