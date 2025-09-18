@@ -22,7 +22,7 @@ jobs:
       - name: Instalar ChromeDriver compatível
         run: |
           CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
-          MAJOR_VERSION=${CHROME_VERSION%%.*}
+          MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d '.' -f1)
           echo "Versão detectada do Chrome: $CHROME_VERSION"
           DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${MAJOR_VERSION}")
           echo "Baixando ChromeDriver versão: $DRIVER_VERSION"
