@@ -4,10 +4,10 @@ Library    SeleniumLibrary
 *** Keywords ***
 Abrir Navegador Headless Seguro
     [Arguments]    ${url}
-    # Pega a classe correta do Selenium para evitar o erro de ArgOptions
-    ${ChromeOptions}=    Evaluate    __import__('selenium.webdriver').webdriver.ChromeOptions()
+    # Pega a classe correta do Selenium (Options), não o ArgOptions do SeleniumLibrary
+    ${ChromeOptions}=    Evaluate    __import__('selenium.webdriver.chrome.options').Options()    selenium.webdriver.chrome.options
     # Flags estáveis no CI/CD
-    Call Method    ${ChromeOptions}    add_argument    --headless
+    Call Method    ${ChromeOptions}    add_argument    --headless=new
     Call Method    ${ChromeOptions}    add_argument    --no-sandbox
     Call Method    ${ChromeOptions}    add_argument    --disable-dev-shm-usage
     Call Method    ${ChromeOptions}    add_argument    --window-size=1920,1080
