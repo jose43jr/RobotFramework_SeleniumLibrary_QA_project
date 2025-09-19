@@ -4,7 +4,7 @@ Resource   ../resources/variables.robot
 
 *** Test Cases ***
 Preencher Formulario Practice Form
-    Open Browser    ${URL_FORMS}    chrome    options=--headless --no-sandbox --disable-dev-shm-usage --window-size\=1920,1080
+    Open Browser    ${URL_FORMS}    chrome    arguments=--headless,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080,--user-data-dir=/tmp/chrome-${TEST NAME}
     Execute Javascript    Array.from(document.querySelectorAll('iframe')).forEach(f => f.remove())
     Input Text    id=firstName     Jose
     Input Text    id=lastName      Feitosa
