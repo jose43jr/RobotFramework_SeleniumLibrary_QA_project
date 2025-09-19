@@ -1,10 +1,10 @@
 *** Settings ***
-Resource    ../resources/keywords.robot
-Resource    ../resources/variables.robot
+Resource   ../resources/browser.robot
+Resource   ../resources/variables.robot
 
 *** Test Cases ***
 Upload De Arquivo
-    Abrir Navegador Headless Seguro    ${URL_UPLOAD}
+    Abrir Navegador Headless    ${URL_UPLOAD}
     Choose File    id=uploadFile    ${UPLOAD_FILE}
-    Wait Until Page Contains    demo.txt    5s
+    Page Should Contain    demo.txt
     Close Browser

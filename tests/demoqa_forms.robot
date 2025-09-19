@@ -1,17 +1,17 @@
 *** Settings ***
-Resource    ../resources/keywords.robot
-Resource    ../resources/variables.robot
+Resource   ../resources/browser.robot
+Resource   ../resources/variables.robot
 
 *** Test Cases ***
 Preencher Formulario Practice Form
-    Abrir Navegador Headless Seguro    ${URL_FORMS}
-    Remover Iframes De Anuncio
+    Abrir Navegador Headless    ${URL_FORMS}
+    Execute Javascript    Array.from(document.querySelectorAll('iframe')).forEach(f => f.remove())
     Input Text    id=firstName     Jose
     Input Text    id=lastName      Feitosa
     Input Text    id=userEmail     jose@example.com
-    Clicar Com JS    label[for="gender-radio-1"]
+    Execute Javascript    document.querySelector('label[for="gender-radio-1"]').click()
     Input Text    id=userNumber    9999999999
     Scroll Element Into View    id=submit
-    Clicar Com JS    #submit
-    Wait Until Page Contains    Jose Feitosa    5s
+    Execute Javascript    document.getElementById("submit").click()
+    Page Should Contain    Jose Feitosa
     Close Browser
