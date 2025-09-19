@@ -1,10 +1,10 @@
 *** Settings ***
-Resource   ../resources/browser.robot
+Library    SeleniumLibrary
 Resource   ../resources/variables.robot
 
 *** Test Cases ***
 Clicar Botao DuploClique
-    Abrir Navegador Headless    ${URL_ELEMENTS}
+    Open Browser    ${URL_ELEMENTS}    chrome    options=add_argument("--headless"),add_argument("--no-sandbox"),add_argument("--disable-dev-shm-usage"),add_argument("--window-size=1920,1080")
     Scroll Element Into View    id=doubleClickBtn
     Wait Until Element Is Visible    id=doubleClickBtn    5s
     Double Click Element    id=doubleClickBtn

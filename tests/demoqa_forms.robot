@@ -1,10 +1,10 @@
 *** Settings ***
-Resource   ../resources/browser.robot
+Library    SeleniumLibrary
 Resource   ../resources/variables.robot
 
 *** Test Cases ***
 Preencher Formulario Practice Form
-    Abrir Navegador Headless    ${URL_FORMS}
+    Open Browser    ${URL_FORMS}    chrome    options=add_argument("--headless"),add_argument("--no-sandbox"),add_argument("--disable-dev-shm-usage"),add_argument("--window-size=1920,1080")
     Execute Javascript    Array.from(document.querySelectorAll('iframe')).forEach(f => f.remove())
     Input Text    id=firstName     Jose
     Input Text    id=lastName      Feitosa
