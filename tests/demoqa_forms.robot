@@ -3,15 +3,14 @@ Library    SeleniumLibrary
 Resource   ../resources/variables.robot
 
 *** Test Cases ***
-Preencher Formulario Practice Form
-    Open Browser    ${URL_FORMS}    chrome    arguments=--headless,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080,--user-data-dir=/tmp/chrome-${TEST NAME}
-    Execute Javascript    Array.from(document.querySelectorAll('iframe')).forEach(f => f.remove())
-    Input Text    id=firstName     Jose
-    Input Text    id=lastName      Feitosa
-    Input Text    id=userEmail     jose@example.com
-    Execute Javascript    document.querySelector('label[for="gender-radio-1"]').click()
-    Input Text    id=userNumber    9999999999
+Preencher Formulario TextBox
+    Open Browser    ${URL_TEXTBOX}    chrome    arguments=--headless,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080,--user-data-dir=/tmp/chrome-${TEST NAME}
+    Input Text    id=userName           Jose Feitosa
+    Input Text    id=userEmail          jose@example.com
+    Input Text    id=currentAddress     Rua A, 123
+    Input Text    id=permanentAddress   Rua B, 456
     Scroll Element Into View    id=submit
     Execute Javascript    document.getElementById("submit").click()
-    Page Should Contain    Jose Feitosa
+    Page Should Contain    Name:
+    Page Should Contain    Email:
     Close Browser

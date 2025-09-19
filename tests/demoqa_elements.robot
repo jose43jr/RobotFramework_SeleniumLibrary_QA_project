@@ -3,10 +3,14 @@ Library    SeleniumLibrary
 Resource   ../resources/variables.robot
 
 *** Test Cases ***
-Clicar Botao DuploClique
-    Open Browser    ${URL_ELEMENTS}    chrome    arguments=--headless,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080,--user-data-dir=/tmp/chrome-${TEST NAME}
-    Scroll Element Into View    id=doubleClickBtn
-    Wait Until Element Is Visible    id=doubleClickBtn    5s
-    Double Click Element    id=doubleClickBtn
-    Page Should Contain    You have done a double click
+Preencher Formulario TextBox
+    Open Browser    ${URL_TEXTBOX}    chrome    arguments=--headless,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080,--user-data-dir=/tmp/chrome-${TEST NAME}
+    Input Text    id=userName           Jose Feitosa
+    Input Text    id=userEmail          jose@example.com
+    Input Text    id=currentAddress     Rua A, 123
+    Input Text    id=permanentAddress   Rua B, 456
+    Scroll Element Into View    id=submit
+    Execute Javascript    document.getElementById("submit").click()
+    Page Should Contain    Name:
+    Page Should Contain    Email:
     Close Browser

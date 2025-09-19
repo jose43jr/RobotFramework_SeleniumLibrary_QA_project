@@ -3,9 +3,14 @@ Library    SeleniumLibrary
 Resource   ../resources/variables.robot
 
 *** Test Cases ***
-Aceitar Alerta
-    Open Browser    ${URL_ALERTS}    chrome    arguments=--headless,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080,--user-data-dir=/tmp/chrome-${TEST NAME}
-    Click Button    id=alertButton
-    Alert Should Be Present    You clicked a button
-    Handle Alert    ACCEPT
+Preencher Formulario TextBox
+    Open Browser    ${URL_TEXTBOX}    chrome    arguments=--headless,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080,--user-data-dir=/tmp/chrome-${TEST NAME}
+    Input Text    id=userName           Jose Feitosa
+    Input Text    id=userEmail          jose@example.com
+    Input Text    id=currentAddress     Rua A, 123
+    Input Text    id=permanentAddress   Rua B, 456
+    Scroll Element Into View    id=submit
+    Execute Javascript    document.getElementById("submit").click()
+    Page Should Contain    Name:
+    Page Should Contain    Email:
     Close Browser
