@@ -1,6 +1,3 @@
-*** Settings ***
-Library    SeleniumLibrary
-
 *** Keywords ***
 Abrir Navegador Headless Seguro
     [Arguments]    ${url}
@@ -15,10 +12,3 @@ Abrir Navegador Headless Seguro
     Call Method    ${options}    add_argument    --user-data-dir=/tmp/chrome-${rand}
     Create WebDriver    Chrome    options=${options}
     Go To    ${url}
-
-Clicar Com JS
-    [Arguments]    ${css}
-    Execute Javascript    document.querySelector("${css}").click()
-
-Remover Iframes De Anuncio
-    Execute Javascript    Array.from(document.querySelectorAll('iframe')).forEach(f => f.remove())
