@@ -1,9 +1,10 @@
 *** Settings ***
 Resource    ../resources/keywords.robot
+Resource    ../resources/variables.robot
 
 *** Test Cases ***
 Upload De Arquivo
-    Abrir Navegador DemoQA    https://demoqa.com/upload-download    ${BROWSER}
-    Choose File    id=uploadFile    C:/Users/feito/robot_project/tests/demo.txt
-    Page Should Contain    demo.txt
-    Fechar Navegador
+    Abrir Navegador Headless Seguro    ${URL_UPLOAD}
+    Choose File    id=uploadFile    ${UPLOAD_FILE}
+    Wait Until Page Contains    demo.txt    5s
+    Close Browser

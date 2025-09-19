@@ -4,14 +4,13 @@ Resource    ../resources/variables.robot
 
 *** Test Cases ***
 Preencher Formulario TextBox
-    Abrir Navegador DemoQA    ${URL}    ${BROWSER}
-    Input Text    id=userName           ${NOME}
-    Input Text    id=userEmail          ${EMAIL}
-    Input Text    id=currentAddress     ${END1}
-    Input Text    id=permanentAddress   ${END2}
+    Abrir Navegador Headless Seguro    ${URL_TEXTBOX}
+    Input Text    id=userName           Jose Feitosa
+    Input Text    id=userEmail          jose@example.com
+    Input Text    id=currentAddress     Rua A, 123
+    Input Text    id=permanentAddress   Rua B, 456
     Scroll Element Into View    id=submit
-    Execute Javascript    document.getElementById("submit").click()
+    Clicar Com JS    #submit
     Page Should Contain    Name:
     Page Should Contain    Email:
-    Pause Execution
-    Fechar Navegador
+    Close Browser

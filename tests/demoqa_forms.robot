@@ -4,14 +4,14 @@ Resource    ../resources/variables.robot
 
 *** Test Cases ***
 Preencher Formulario Practice Form
-    [Documentation]    Abre o formulário e preenche dados básicos
-    Abrir Navegador DemoQA    https://demoqa.com/automation-practice-form    ${BROWSER}
+    Abrir Navegador Headless Seguro    ${URL_FORMS}
+    Remover Iframes De Anuncio
     Input Text    id=firstName     Jose
     Input Text    id=lastName      Feitosa
     Input Text    id=userEmail     jose@example.com
-    Click Element    xpath=//label[text()='Male']
+    Clicar Com JS    label[for="gender-radio-1"]
     Input Text    id=userNumber    9999999999
     Scroll Element Into View    id=submit
-    Execute Javascript    document.getElementById("submit").click()
-    Page Should Contain    Jose Feitosa
-    Fechar Navegador
+    Clicar Com JS    #submit
+    Wait Until Page Contains    Jose Feitosa    5s
+    Close Browser
